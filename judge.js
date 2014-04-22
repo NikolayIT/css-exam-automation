@@ -10,6 +10,8 @@ function equalDiff(expected, received, diff) {
 };
 
 function compare(functionName, expected, received, param) {
+	if (received === null && expected !== null) return false;
+	if (received === undefined && expected !== undefined) return false;
 	if (functionName == "equal")
 		return equal(expected, received);
 	if (functionName == "equalDiff")

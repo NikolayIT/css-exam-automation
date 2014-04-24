@@ -3,7 +3,7 @@ exports.runBeforeTests = function() {
 	$("body").css("margin", "0");
 	$("html").css("padding", "0");
 	$("html").css("margin", "0");
-	$("#wrapper").css("padding", "0 auto");
+	$("#wrapper").css("padding", "0");
 	$("#wrapper").css("margin", "0");
 }
 
@@ -80,7 +80,7 @@ exports.tests = [
 	{name:"Header title left offset is correct", points: 4, func:function(){
 		return $("header>h1").offset().left
 			+ parseInt($("header>h1").css("padding-left"));
-	}, expected: 15, compare: "equalDiff", compareParam: 3},
+	}, expected: 15, compare: "equalDiff", compareParam: 2},
 	
 	{name:"Header title top offset is correct", points: 4, func:function(){
 		return $("header>h1").offset().top
@@ -96,7 +96,7 @@ exports.tests = [
 	{name:"Menu is right floated", points: 5, func:function(){
 		return $("#nav>ul>li").eq(0).offset().left;
 			+ parseInt($("#nav>ul>li").eq(0).css("padding-left"));
-	}, expected: 712, compare: "equalDiff", compareParam: 100},
+	}, expected: 712, compare: "equalDiff", compareParam: 50},
 	
 	{name:"Menu top offset is correct", points: 4, func:function(){
 		return $("#nav>ul>li").eq(0).offset().top
@@ -131,7 +131,7 @@ exports.tests = [
 		var a1 = $("#searchBar").offset().left;
 		var a2 = $("#archives>a").eq(0).offset().left;
 		return Math.abs(a1 - a2);
-	}, expected: 19, compare: "equalDiff", compareParam: 3},
+	}, expected: 19, compare: "equalDiff", compareParam: 2},
 	
 	{name:"Archive links and search text are on the same line", points: 4, func:function(){
 		var a1 = $("#archives>a").eq(0).offset().top;

@@ -1,3 +1,12 @@
+exports.runBeforeTests = function() {
+	$("body").css("padding", "0");
+	$("body").css("margin", "0");
+	$("html").css("padding", "0");
+	$("html").css("margin", "0");
+	$("#wrapper").css("padding", "0 auto");
+	$("#wrapper").css("margin", "0");
+}
+
 exports.tests = [
 	// Font sizes
 	{name:"font size #content text", points: 4, func:function(){

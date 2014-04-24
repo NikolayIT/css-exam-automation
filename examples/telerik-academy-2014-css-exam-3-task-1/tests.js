@@ -46,8 +46,8 @@ exports.tests = [
 	}, expected: 0, compare: "equalDiff", compareParam: 15},
 	
 	{name:"#archive links are not underlined", points: 4, func:function(){
-		return $("#archive>ul>li>a").css("text-decoration");
-	}, expected: "none", compare: "equal", compareParam: null},
+		return $("#archive>ul>li>a").css("text-decoration").indexOf("none") > -1;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	{name:"distance between two #archive links", points: 3, func:function(){
 		var a1 = $("#archive>ul>li>a").eq(0).offset().left;
@@ -63,7 +63,7 @@ exports.tests = [
 	
 	{name:"#archive links are right floated", points: 4, func:function(){
 		return $("#archive>ul>li").eq(5).offset().left;
-	}, expected: 935, compare: "equalDiff", compareParam: 30},
+	}, expected: 930, compare: "equalDiff", compareParam: 30},
 	
 	{name:"two #archive links are on the same line", points: 4, func:function(){
 		var a1 = $("#archive>ul>li>a").eq(0).offset().top;
@@ -92,7 +92,7 @@ exports.tests = [
 	
 	// Header
 	{name:"Header height", points: 4, func:function(){
-		return $("#header").height();
+		return $("#header").outerHeight();
 	}, expected: 64, compare: "equalDiff", compareParam: 1},
 	
 	{name:"Header has background image", points: 4, func:function(){
@@ -130,8 +130,8 @@ exports.tests = [
 	}, expected: 0, compare: "equal", compareParam: null},
 	
 	{name:"#header links are capitalized", points: 4, func:function(){
-		return $("#nav>ul>li>a").css("text-transform");
-	}, expected: "capitalize", compare: "equal", compareParam: null},
+		return $("#nav>ul>li>a").css("text-transform").indexOf("capitalize") > -1;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	
 	// Header title

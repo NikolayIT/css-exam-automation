@@ -3,7 +3,7 @@ exports.runBeforeTests = function() {
 	$("body").css("margin", "0");
 	$("html").css("padding", "0");
 	$("html").css("margin", "0");
-	$("#wrapper").css("padding", "0 auto");
+	$("#wrapper").css("padding", "0");
 	$("#wrapper").css("margin", "0");
 }
 
@@ -49,17 +49,11 @@ exports.tests = [
 		return $("#archive>ul>li>a").css("text-decoration").indexOf("none") > -1;
 	}, expected: true, compare: "equal", compareParam: null},
 	
-	{name:"distance between two #archive links", points: 3, func:function(){
+	{name:"distance between two #archive links", points: 4, func:function(){
 		var a1 = $("#archive>ul>li>a").eq(0).offset().left;
 		var a2 = $("#archive>ul>li>a").eq(1).offset().left;
 		return Math.abs(a1 - a2);
 	}, expected: 34, compare: "equalDiff", compareParam: 3},
-	
-	{name:"distance between two #archive links", points: 1, func:function(){
-		var a1 = $("#archive>ul>li>a").eq(0).offset().left;
-		var a2 = $("#archive>ul>li>a").eq(1).offset().left;
-		return Math.abs(a1 - a2);
-	}, expected: 34, compare: "equal", compareParam: null},
 	
 	{name:"#archive links are right floated", points: 4, func:function(){
 		return $("#archive>ul>li").eq(5).offset().left;
@@ -130,7 +124,8 @@ exports.tests = [
 	}, expected: 0, compare: "equal", compareParam: null},
 	
 	{name:"#header links are capitalized", points: 4, func:function(){
-		return $("#nav>ul>li>a").css("text-transform").indexOf("capitalize") > -1;
+		return $("#nav>ul>li>a").css("text-transform").indexOf("capitalize") > -1 ||
+			$("#nav>ul>li>a").eq(0).width() == 47;
 	}, expected: true, compare: "equal", compareParam: null},
 	
 	

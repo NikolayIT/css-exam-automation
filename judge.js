@@ -1,5 +1,6 @@
 var page = require('webpage').create();
 var tests = require('./tests.js').tests;
+var runBeforeTests = require('./tests.js').runBeforeTests;
 
 function equal(expected, received) {
 	return expected == received;
@@ -20,6 +21,8 @@ function compare(functionName, expected, received, param) {
 
 page.viewportSize = {width: 960, height: 800};
 page.open('index.html', function() {
+	if (runBeforeTests) page.evaluate(runBeforeTests);
+	
 	var points = 0;
 	var maxPoints = 0;
 	for(var i = 0; i < tests.length; i++) {

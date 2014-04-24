@@ -88,8 +88,8 @@ exports.tests = [
 	}, expected: 15, compare: "equalDiff", compareParam: 2},
 	
 	{name:"Header title is uppercased", points: 4, func:function(){
-		return $("header>h1").css("text-transform");
-	}, expected: "uppercase", compare: "equal", compareParam: null},
+		return $("header>h1").css("text-transform").indexOf("uppercase") > -1;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	
 	// Menu (navigation)
@@ -140,8 +140,8 @@ exports.tests = [
 	}, expected: 0, compare: "equal", compareParam: null},
 
 	{name:"Archive links are not underlined", points: 4, func:function(){
-		return $("#archives>a").css("text-decoration");
-	}, expected: "none", compare: "equal", compareParam: null},
+		return $("#archives>a").css("text-decoration").indexOf("none") > -1;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	{name:"Search is right floated", points: 4, func:function(){
 		return $("#search>a").offset().left;

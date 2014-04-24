@@ -134,18 +134,19 @@ exports.tests = [
 	
 	// Line
 	{name:"Line has correct background color", points: 3, func:function(){
-		return $.xcolor.distance($("#line").css("background-color"), "#39C518");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+		return Math.abs($.xcolor.distance($("#line").css("background-color"), "#39C518")) <= 15 ||
+			Math.abs($.xcolor.distance($("header").css("border-bottom-color"), "#39C518")) <= 15 ;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	{name:"Line has correct height", points: 4, func:function(){
-		return $("#line").outerHeight();
-	}, expected: 5, compare: "equalDiff", compareParam: 0},
+		return $("#line").outerHeight() == 5 || $("header").css("border-bottom-width") == "5px";
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	
 	// Search
 	{name:"Search title is uppercased", points: 4, func:function(){
-		return $("#aside").css("text-transform");
-	}, expected: "uppercase", compare: "equal", compareParam: null},
+		return $("#aside").css("text-transform").indexOf("uppercase") > -1;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	{name:"Search is positioned correctly", points: 4, func:function(){
 		return $("#aside").offset().left;

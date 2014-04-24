@@ -106,8 +106,8 @@ exports.tests = [
 	}, expected: 0, compare: "equal", compareParam: null},
 	
 	{name:"#header links are not underlined", points: 4, func:function(){
-		return $("#nav>ul>li>a").css("text-decoration");
-	}, expected: "none", compare: "equal", compareParam: null},
+		return $("#nav>ul>li>a").css("text-decoration").indexOf("none") > -1;
+	}, expected: true, compare: "equal", compareParam: null},
 	
 	{name:"#nav elements are positioned correctly on left", points: 2, func:function(){
 		return $("#nav>ul>li>a").eq(0).offset().left;
@@ -145,7 +145,6 @@ exports.tests = [
 	
 	{name:"#header title is positioned correctly on right", points: 2, func:function(){
 		return $("#header>h1").offset().left
-			+ parseInt($("#header>h1").css("padding-left"))
-			+ parseInt($("#header>h1").css("margin-left"));
+			+ parseInt($("#header>h1").css("padding-left"));
 	}, expected: 645, compare: "equalDiff", compareParam: 5},
 ];

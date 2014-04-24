@@ -86,6 +86,7 @@ exports.tests = [
 	// Menu (navigation)
 	{name:"Menu is right floated", points: 5, func:function(){
 		return $("#nav>ul>li").eq(0).offset().left;
+			+ parseInt($("#nav>ul>li").eq(0).css("padding-left"));
 	}, expected: 712, compare: "equalDiff", compareParam: 100},
 	
 	{name:"Menu top offset is correct", points: 4, func:function(){

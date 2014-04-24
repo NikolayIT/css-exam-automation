@@ -3,7 +3,7 @@ exports.runBeforeTests = function() {
 	$("body").css("margin", "0");
 	$("html").css("padding", "0");
 	$("html").css("margin", "0");
-	$("#wrapper").css("padding", "0 auto");
+	$("#wrapper").css("padding", "0");
 	$("#wrapper").css("margin", "0");
 }
 
@@ -29,7 +29,7 @@ exports.tests = [
 		return $("#content>article>p").css("font-size");
 	}, expected: "14px", compare: "equal", compareParam: null},
 	
-	{name:"Font size of the search title", points: 1, func:function(){
+	{name:"Font size of the search title", points: 2, func:function(){
 		return $("#aside").css("font-size");
 	}, expected: "14px", compare: "equal", compareParam: null},
 	
@@ -41,23 +41,23 @@ exports.tests = [
 	
 	{name:"Sub-title text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("#title>h2").css("color"), "#C0C0C0");
-	}, expected: 0, compare: "equalDiff", compareParam: 20},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	{name:"Menu text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("#nav>ul>li").css("color"), "#CC6600");
-	}, expected: 0, compare: "equalDiff", compareParam: 20},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	{name:"Content title text color difference", points: 2, func:function(){
 		return $.xcolor.distance($("#content>h1").css("color"), "#59770E");
-	}, expected: 0, compare: "equalDiff", compareParam: 20},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	{name:"Content text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("#content>article>p").css("color"), "#555555");
-	}, expected: 0, compare: "equalDiff", compareParam: 20},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	{name:"Search title text color difference", points: 2, func:function(){
 		return $.xcolor.distance($("#aside").css("color"), "#59770E");
-	}, expected: 0, compare: "equalDiff", compareParam: 20},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	
 	// Page
@@ -68,8 +68,8 @@ exports.tests = [
 	
 	// Header
 	{name:"Header height", points: 5, func:function(){
-		return $("header").outerHeight();
-	}, expected: 97, compare: "equalDiff", compareParam: 3},
+		return $("header").outerHeight() - parseInt($("header").css("border-bottom-width"));
+	}, expected: 97, compare: "equalDiff", compareParam: 5},
 	
 	{name:"Header has background image", points: 4, func:function(){
 		return $("header").css("background-image").indexOf("header-bg.png") > -1;
@@ -80,19 +80,19 @@ exports.tests = [
 	{name:"Header title left offset is correct", points: 3, func:function(){
 		return $("header>#title>h1").offset().left
 			+ parseInt($("header>#title>h1").css("padding-left"));
-	}, expected: 20, compare: "equalDiff", compareParam: 3},
+	}, expected: 20, compare: "equalDiff", compareParam: 5},
 	
 	{name:"Header title top offset is correct", points: 3, func:function(){
 		return $("header>#title>h1").offset().top
 			+ parseInt($("header>#title>h1").css("padding-top"));
-	}, expected: 20, compare: "equalDiff", compareParam: 2},
+	}, expected: 20, compare: "equalDiff", compareParam: 5},
 	
 	{name:"Sub-header title left offset is correct", points: 3, func:function(){
 		return $("header>#title>h2").offset().left
 			+ parseInt($("header>#title>h2").css("padding-left"));
-	}, expected: 20, compare: "equalDiff", compareParam: 3},
+	}, expected: 20, compare: "equalDiff", compareParam: 5},
 	
-	{name:"Sub-header is not bolded", points: 2, func:function(){
+	{name:"Sub-header is not bolded", points: 3, func:function(){
 		var fontWeight = $("header>#title>h2").css('font-weight');
 		return fontWeight == "normal" || fontWeight == "400";
 	}, expected: true, compare: "equal", compareParam: null},
@@ -100,7 +100,7 @@ exports.tests = [
 	{name:"Sub-header title top offset is correct", points: 3, func:function(){
 		return $("header>#title>h2").offset().top
 			+ parseInt($("header>#title>h2").css("padding-top"));
-	}, expected: 61, compare: "equalDiff", compareParam: 2},
+	}, expected: 61, compare: "equalDiff", compareParam: 5},
 	
 	
 	// Menu (navigation)
@@ -112,13 +112,13 @@ exports.tests = [
 	{name:"Menu top offset is correct", points: 4, func:function(){
 		return $("#nav>ul>li").eq(0).offset().top
 			+ parseInt($("#nav>ul>li").eq(0).css("padding-top"));
-	}, expected: 44, compare: "equalDiff", compareParam: 3},
+	}, expected: 44, compare: "equalDiff", compareParam: 4},
 	
 	{name:"Distance between two menu links", points: 4, func:function(){
 		var a1 = $("#nav>ul>li").eq(0).offset().left;
 		var a2 = $("#nav>ul>li").eq(1).offset().left;
 		return Math.abs(a1 - a2);
-	}, expected: 72, compare: "equalDiff", compareParam: 4},
+	}, expected: 72, compare: "equalDiff", compareParam: 5},
 	
 	{name:"Two menu links are on the same line", points: 4, func:function(){
 		var a1 = $("#nav>ul>li").eq(0).offset().top;
@@ -126,7 +126,7 @@ exports.tests = [
 		return Math.abs(a1 - a2);
 	}, expected: 0, compare: "equal", compareParam: null},
 	
-	{name:"Menu links are bolded", points: 2, func:function(){
+	{name:"Menu links are bolded", points: 3, func:function(){
 		var fontWeight = $("#nav>ul>li").eq(0).css('font-weight');
 		return fontWeight == "bold" || fontWeight > "400";
 	}, expected: true, compare: "equal", compareParam: null},
@@ -148,15 +148,11 @@ exports.tests = [
 		return $("#aside").css("text-transform").indexOf("uppercase") > -1;
 	}, expected: true, compare: "equal", compareParam: null},
 	
-	{name:"Search is positioned correctly", points: 4, func:function(){
-		return $("#aside").offset().left;
-	}, expected: 760, compare: "equalDiff", compareParam: 50},
+	{name:"Search/content has correct width", points: 4, func:function(){
+		return Math.abs($("#aside").outerWidth() - 200) <= 5 || Math.abs($("#content").outerWidth() - 760) <= 5;
+	}, expected: true, compare: "equal", compareParam: null},
 	
-	{name:"Search has correct width", points: 4, func:function(){
-		return $("#aside").outerWidth();
-	}, expected: 200, compare: "equalDiff", compareParam: 10},
-	
-	{name:"Search text is bolded", points: 2, func:function(){
+	{name:"Search text is bolded", points: 3, func:function(){
 		var fontWeight = $("#aside").css('font-weight');
 		return fontWeight == "bold" || fontWeight > "400";
 	}, expected: true, compare: "equal", compareParam: null},

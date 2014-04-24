@@ -1,0 +1,80 @@
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.clear {
+	clear: both;
+}
+
+header {
+	background-image: url('images/header-bg.png');
+	background-repeat: repeat;
+}
+
+#title {
+	float: left;
+	padding: 20px;
+}
+
+#title h1 {
+	font-size: 34px;
+	color: #EFE;
+	padding: 0px;
+	margin: 0px;
+}
+
+#title h2 {
+	font-size: 14px;
+	color: #C0C0C0;
+	font-weight: normal;
+	padding: 0px;
+	margin: 0px;
+}
+
+#nav {
+	float: right;
+	padding-top: 30px;
+	padding-right: 20px;
+}
+
+#nav ul li {
+	display: inline;
+	padding: 8px;
+	margin: 0px;
+	color: #CC6600;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+#line {
+	background-color: #39C518;
+	height: 5px;
+}
+
+#content {
+	color: #555555;
+	float: left;
+	width: 760px;
+}
+
+#aside {
+	float: left;
+	width: 200px;
+	padding-top: 20px;
+	color: #59770E;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#content h1 {
+	color: #59770E;
+	font-size: 30px;
+}

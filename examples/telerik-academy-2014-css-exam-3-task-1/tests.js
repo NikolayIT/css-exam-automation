@@ -92,7 +92,7 @@ exports.tests = [
 	// Header menu
 	{name:"Color of the #header menu", points: 3, func:function(){
 		return $.xcolor.distance($("#nav>ul>li>a").css("color"), "rgb(255, 255, 255)");
-	}, expected: 0, compare: "equal", compareParam: null},
+	}, expected: 0, compare: "equalDiff", compareParam: 10},
 	
 	{name:"#header links are not underlined", points: 4, func:function(){
 		return $("#nav>ul>li>a").css("text-decoration").indexOf("none") > -1;
@@ -127,7 +127,7 @@ exports.tests = [
 	// Header title
 	{name:"Color of the #header title", points: 4, func:function(){
 		return $.xcolor.distance($("#header>h1").css("color"), "rgb(255, 255, 255)");
-	}, expected: 0, compare: "equal", compareParam: null},
+	}, expected: 0, compare: "equalDiff", compareParam: 10},
 	
 	{name:"#header title is right floated", points: 3, func:function(){
 		return $("#header>h1").offset().left

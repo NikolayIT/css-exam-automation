@@ -37,27 +37,27 @@ exports.tests = [
 	// Colors
 	{name:"Title text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("header>h1").css("color"), "#575E5B");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 		
 	{name:"Menu text color difference", points: 2, func:function(){
 		return $.xcolor.distance($("#nav>ul>li").css("color"), "#575E5B");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 		
 	{name:"Archive text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("#archives>a").css("color"), "#C6C6C6");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 		
 	{name:"Search text color difference", points: 2, func:function(){
 		return $.xcolor.distance($("#search>a").css("color"), "#C6C6C6");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 		
 	{name:"Content title text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("#content>h1").css("color"), "#575E5B");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 		
 	{name:"Content text color difference", points: 2, func:function(){
 		return $.xcolor.distance($("#content>article>p").css("color"), "#575E5B");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	
 	// Page
@@ -68,7 +68,7 @@ exports.tests = [
 	
 	// Header
 	{name:"Header height", points: 5, func:function(){
-		return $("header").outerHeight();
+		return $("header").outerHeight() - parseInt($("header").css("border-bottom-width"));
 	}, expected: 49, compare: "equalDiff", compareParam: 2},
 	
 	{name:"Header has background image", points: 4, func:function(){
@@ -107,7 +107,7 @@ exports.tests = [
 		var a1 = $("#nav>ul>li").eq(0).offset().left;
 		var a2 = $("#nav>ul>li").eq(1).offset().left;
 		return Math.abs(a1 - a2);
-	}, expected: 57, compare: "equalDiff", compareParam: 3},
+	}, expected: 57, compare: "equalDiff", compareParam: 5},
 	
 	{name:"Two menu links are on the same line", points: 5, func:function(){
 		var a1 = $("#nav>ul>li").eq(0).offset().top;

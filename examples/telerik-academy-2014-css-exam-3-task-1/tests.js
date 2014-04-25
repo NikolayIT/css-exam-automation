@@ -33,7 +33,7 @@ exports.tests = [
 	// Content text
 	{name:"#content text color difference", points: 5, func:function(){
 		return $.xcolor.distance($("#content p").css("color"), "rgb(51, 51, 51)");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	{name:"#content text is justified", points: 5, func:function(){
 		return $("#content>article>p").css("text-align");
@@ -41,9 +41,9 @@ exports.tests = [
 	
 	
 	// #archive elements
-	{name:"#archive elements text color difference", points: 4, func:function(){
+	{name:"#archive elements text color difference", points: 3, func:function(){
 		return $.xcolor.distance($("#archive>ul>li>a").css("color"), "rgb(51, 51, 51)");
-	}, expected: 0, compare: "equalDiff", compareParam: 15},
+	}, expected: 0, compare: "equalDiff", compareParam: 60},
 	
 	{name:"#archive links are not underlined", points: 4, func:function(){
 		return $("#archive>ul>li>a").css("text-decoration").indexOf("none") > -1;
@@ -53,7 +53,7 @@ exports.tests = [
 		var a1 = $("#archive>ul>li>a").eq(0).offset().left;
 		var a2 = $("#archive>ul>li>a").eq(1).offset().left;
 		return Math.abs(a1 - a2);
-	}, expected: 34, compare: "equalDiff", compareParam: 3},
+	}, expected: 34, compare: "equalDiff", compareParam: 4},
 	
 	{name:"#archive links are right floated", points: 4, func:function(){
 		return $("#archive>ul>li").eq(5).offset().left;
@@ -69,13 +69,7 @@ exports.tests = [
 		var a1 = $("#archive").offset().top;
 		var a2 = $("#header").offset().top;
 		return Math.abs(a1 - a2);
-	}, expected: 17, compare: "equalDiff", compareParam: 1},
-	
-	{name:"0 distance between #archive and #header", points: 2, func:function(){
-		var a1 = $("#archive").offset().top;
-		var a2 = $("#header").offset().top;
-		return Math.abs(a1 - a2);
-	}, expected: 17, compare: "equalDiff", compareParam: 0},
+	}, expected: 17, compare: "equalDiff", compareParam: 5},
 	
 	
 	// Page
@@ -86,16 +80,17 @@ exports.tests = [
 	
 	// Header
 	{name:"Header height", points: 4, func:function(){
-		return $("#header").outerHeight();
-	}, expected: 64, compare: "equalDiff", compareParam: 1},
+		return $("#header").outerHeight() - parseInt($("#header").css("border-bottom-width"));
+	}, expected: 64, compare: "equalDiff", compareParam: 5},
 	
 	{name:"Header has background image", points: 4, func:function(){
-		return $("#header").css("background-image").indexOf("topnav_divider.png") > -1;
+		return $("#header").css("background-image").indexOf("topnav_divider.png") > -1 ||
+			$("#nav").css("background-image").indexOf("topnav_divider.png") > -1;
 	}, expected: true, compare: "equal", compareParam: null},
 	
 	
 	// Header menu
-	{name:"Color of the #header menu", points: 4, func:function(){
+	{name:"Color of the #header menu", points: 3, func:function(){
 		return $.xcolor.distance($("#nav>ul>li>a").css("color"), "rgb(255, 255, 255)");
 	}, expected: 0, compare: "equal", compareParam: null},
 	
@@ -103,21 +98,21 @@ exports.tests = [
 		return $("#nav>ul>li>a").css("text-decoration").indexOf("none") > -1;
 	}, expected: true, compare: "equal", compareParam: null},
 	
-	{name:"#nav elements are positioned correctly on left", points: 2, func:function(){
+	{name:"#nav elements are positioned correctly on left", points: 3, func:function(){
 		return $("#nav>ul>li>a").eq(0).offset().left;
-	}, expected: 50, compare: "equalDiff", compareParam: 4},
+	}, expected: 50, compare: "equalDiff", compareParam: 5},
 	
-	{name:"#nav elements are positioned correctly on top", points: 2, func:function(){
+	{name:"#nav elements are positioned correctly on top", points: 3, func:function(){
 		return $("#nav>ul>li>a").eq(0).offset().top;
-	}, expected: 37, compare: "equalDiff", compareParam: 3},
+	}, expected: 37, compare: "equalDiff", compareParam: 5},
 	
 	{name:"distance between two #nav links", points: 4, func:function(){
 		var a1 = $("#nav>ul>li>a").eq(0).offset().left;
 		var a2 = $("#nav>ul>li>a").eq(1).offset().left;
 		return Math.abs(a1 - a2);
-	}, expected: 71, compare: "equalDiff", compareParam: 3},
+	}, expected: 71, compare: "equalDiff", compareParam: 5},
 	
-	{name:"two #header links are on the same line", points: 4, func:function(){
+	{name:"two #header links are on the same line", points: 5, func:function(){
 		var a1 = $("#nav>ul>li>a").eq(0).offset().top;
 		var a2 = $("#nav>ul>li>a").eq(1).offset().top;
 		return Math.abs(a1 - a2);
@@ -134,12 +129,13 @@ exports.tests = [
 		return $.xcolor.distance($("#header>h1").css("color"), "rgb(255, 255, 255)");
 	}, expected: 0, compare: "equal", compareParam: null},
 	
-	{name:"#header title is right floated", points: 4, func:function(){
-		return $("#header>h1").offset().left;
-	}, expected: 630, compare: "equalDiff", compareParam: 50},
-	
-	{name:"#header title is positioned correctly on right", points: 2, func:function(){
+	{name:"#header title is right floated", points: 3, func:function(){
 		return $("#header>h1").offset().left
 			+ parseInt($("#header>h1").css("padding-left"));
-	}, expected: 645, compare: "equalDiff", compareParam: 5},
+	}, expected: 630, compare: "equalDiff", compareParam: 50},
+	
+	{name:"#header title is positioned correctly on right", points: 4, func:function(){
+		return $("#header>h1").offset().left
+			+ parseInt($("#header>h1").css("padding-left"));
+	}, expected: 645, compare: "equalDiff", compareParam: 15},
 ];

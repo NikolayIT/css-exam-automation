@@ -15,7 +15,13 @@
             Cef.Initialize(new CefSettings());
 
             // Create the offscreen Chromium browser
-            this.browser = new ChromiumWebBrowser(url);
+            var settings = new BrowserSettings
+                               {
+                                   FileAccessFromFileUrlsAllowed = true,
+                                   UniversalAccessFromFileUrlsAllowed = true
+                               };
+
+            this.browser = new ChromiumWebBrowser(url, settings);
 
             // Set the size of the browser
             this.browser.Size = new Size(width, height);
@@ -52,7 +58,7 @@
 
         private void BrowserFrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
-            if (this.PageReady != null)
+            if (this.PageReady != null && e.IsMainFrame)
             {
                 this.PageReady(this, EventArgs.Empty);
             }

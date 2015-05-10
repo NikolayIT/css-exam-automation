@@ -11,7 +11,7 @@
 
         public static void Main(string[] args)
         {
-            browser = new ChromiumHeadlessBrowserWithCefSharp("file:///C:/Users/Nikolay/Desktop/index.html", 1024, 768);
+            browser = new ChromiumHeadlessBrowserWithCefSharp("http://google.com", 1024, 768);
             browser.PageReady += BrowserPageReady;
             
             Console.ReadLine();

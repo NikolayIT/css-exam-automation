@@ -4,20 +4,18 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Net;
-    using System.Net.Http;
     using System.Net.Sockets;
     using System.Text;
-    using System.Threading;
     using System.Threading.Tasks;
 
     using uhttpsharp;
-    using uhttpsharp.Headers;
+    using uhttpsharp.Handlers;
     using uhttpsharp.Listeners;
     using uhttpsharp.RequestProviders;
 
     public class WebServer : IWebServer
     {
-        private readonly uhttpsharp.HttpServer httpServer;
+        private readonly HttpServer httpServer;
 
         private readonly Dictionary<string, byte[]> resources; 
 
@@ -26,7 +24,8 @@
             this.resources = new Dictionary<string, byte[]>
                                  {
                                      { "/", Encoding.UTF8.GetBytes("<h1>Hi!</h1>") },
-                                     { "/index.html", Encoding.UTF8.GetBytes(File.ReadAllText(@"C:\Users\Nikolay\Desktop\index.html")) },
+                                     { "/index.html", Encoding.UTF8.GetBytes(File.ReadAllText(@"C:\Users\Nikolay\Desktop\index.html") + "<img src=\"https://i.ytimg.com/vi/GrjQoHy4THY/mqdefaul2t.jpg\" width=0 height=0>") },
+                                     { "/style.css", Encoding.UTF8.GetBytes(File.ReadAllText(@"C:\Users\Nikolay\Desktop\style.css")) },
                                      { "404", Encoding.UTF8.GetBytes("<h1>Not found!</h1>") }
                                  };
 

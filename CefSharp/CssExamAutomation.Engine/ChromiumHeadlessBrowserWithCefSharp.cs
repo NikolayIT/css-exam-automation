@@ -2,6 +2,7 @@
 {
     using System;
     using System.Drawing;
+    using System.Threading;
 
     using CefSharp;
     using CefSharp.OffScreen;
@@ -67,6 +68,7 @@
 
         private void BrowserConsoleMessage(object sender, ConsoleMessageEventArgs e)
         {
+            Console.WriteLine(e.Message);
         }
     }
 }

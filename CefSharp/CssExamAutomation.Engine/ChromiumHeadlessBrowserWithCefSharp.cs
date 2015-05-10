@@ -18,7 +18,8 @@
             var settings = new BrowserSettings
                                {
                                    FileAccessFromFileUrlsAllowed = true,
-                                   UniversalAccessFromFileUrlsAllowed = true
+                                   UniversalAccessFromFileUrlsAllowed = true,
+                                   WebSecurityDisabled = true,
                                };
 
             this.browser = new ChromiumWebBrowser(url, settings);

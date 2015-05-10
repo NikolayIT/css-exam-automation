@@ -2,27 +2,36 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Net;
+    using System.Net.Http;
+    using System.Net.Sockets;
     using System.Text;
     using System.Threading;
+    using System.Threading.Tasks;
+
+    using uhttpsharp;
+    using uhttpsharp.Headers;
+    using uhttpsharp.Listeners;
+    using uhttpsharp.RequestProviders;
 
     public class WebServer : IWebServer
     {
-        private readonly HttpListener httplistener;
+        private readonly uhttpsharp.HttpServer httpServer;
 
         private readonly Dictionary<string, byte[]> resources; 
 
-        public WebServer(string serverPrefix = "http://localhost:1337/")
+        public WebServer(int port = 80)
         {
             this.resources = new Dictionary<string, byte[]>
                                  {
                                      { "/", Encoding.UTF8.GetBytes("<h1>Hi!</h1>") },
-                                     { "/index.html", Encoding.UTF8.GetBytes("<h1>Hi!</h1>") },
+                                     { "/index.html", Encoding.UTF8.GetBytes(File.ReadAllText(@"C:\Users\Nikolay\Desktop\index.html")) },
                                      { "404", Encoding.UTF8.GetBytes("<h1>Not found!</h1>") }
                                  };
 
-            this.httplistener = new HttpListener();
-            this.httplistener.Prefixes.Add(serverPrefix);
+            this.httpServer = new HttpServer(new HttpRequestProvider());
+            this.httpServer.Use(new TcpListenerAdapter(new TcpListener(IPAddress.Loopback, port)));
         }
 
         public void RegisterResource(string path, byte[] contentBytes)
@@ -44,58 +53,27 @@
 
         public void Run()
         {
-            this.httplistener.Start();
+            this.httpServer.Use((context, next) =>
+            {
+                // Thread.Sleep(2000);
+                if (this.resources.ContainsKey(context.Request.Uri.ToString()))
+                {
+                    context.Response = new HttpResponse(HttpResponseCode.Ok, this.resources[context.Request.Uri.ToString()], false);
+                }
+                else
+                {
+                    context.Response = new HttpResponse(HttpResponseCode.NotFound, this.resources["404"], false);
+                }
 
-            ThreadPool.QueueUserWorkItem(
-                o =>
-                    {
-                        Console.WriteLine("Webserver running...");
-                        try
-                        {
-                            while (this.httplistener.IsListening)
-                            {
-                                ThreadPool.QueueUserWorkItem(
-                                    c =>
-                                        {
-                                            var ctx = c as HttpListenerContext;
-                                            try
-                                            {
-                                                byte[] buf;
-                                                if (this.resources.ContainsKey(ctx.Request.Url.PathAndQuery))
-                                                {
-                                                    buf = this.resources[ctx.Request.Url.PathAndQuery];
-                                                }
-                                                else
-                                                {
-                                                    buf = this.resources["404"];
-                                                }
+                return Task.Factory.GetCompleted();
+            });
 
-                                                ctx.Response.ContentLength64 = buf.Length;
-                                                ctx.Response.OutputStream.Write(buf, 0, buf.Length);
-                                            }
-                                            catch
-                                            {
-                                                // suppress any exceptions
-                                            }
-                                            finally
-                                            {
-                                                // always close the stream
-                                                ctx.Response.OutputStream.Close();
-                                            }
-                                        },
-                                    this.httplistener.GetContext());
-                            }
-                        }
-                        catch
-                        {
-                        }
-                    });
+            this.httpServer.Start();
         }
 
         public void Stop()
         {
-            this.httplistener.Stop();
-            this.httplistener.Close();
+            this.httpServer.Dispose();
         }
 
         public void Dispose()

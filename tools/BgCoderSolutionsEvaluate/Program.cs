@@ -3,12 +3,12 @@
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Threading.Tasks;
 
     public static class Program
     {
         private const string TaskName = "Task 2";
         private const int MinimumPointsRequired = 0;
+        private const int PointsRequiredForMaximum = 100;
         private static readonly string WorkingDirectory = Environment.CurrentDirectory;
         private static readonly string SolutionsFolder = WorkingDirectory + @"\solutions\";
         private static readonly string ReportsDirectory = WorkingDirectory + @"\reports\";
@@ -52,15 +52,18 @@
                     File.Copy(sourceFile, CssFile);
 
                     // Create phantomjs.exe process and run it
-                    var process = new Process();
-                    process.StartInfo = new ProcessStartInfo(ExecutablePath)
-                                            {
-                                                UseShellExecute = false,
-                                                RedirectStandardOutput = true,
-                                                Arguments = string.Format("\"{0}\"", JudgeJsFile),
-                                                WorkingDirectory = WorkingDirectory,
-                                                CreateNoWindow = true,
-                                            };
+                    var process = new Process
+                    {
+                        StartInfo =
+                            new ProcessStartInfo(ExecutablePath)
+                                {
+                                    UseShellExecute = false,
+                                    RedirectStandardOutput = true,
+                                    Arguments = string.Format("\"{0}\"", JudgeJsFile),
+                                    WorkingDirectory = WorkingDirectory,
+                                    CreateNoWindow = true,
+                                }
+                    };
                     process.Start();
 
                     // Wait the process to finish
@@ -83,6 +86,11 @@
                     if (points < MinimumPointsRequired)
                     {
                         points = 0;
+                    }
+
+                    if (points >= PointsRequiredForMaximum)
+                    {
+                        points = 100;
                     }
 
                     // Output results

@@ -8,6 +8,7 @@
     public static class Program
     {
         private const string TaskName = "Task 2";
+        private const int MinimumPointsRequired = 0;
         private static readonly string WorkingDirectory = Environment.CurrentDirectory;
         private static readonly string SolutionsFolder = WorkingDirectory + @"\solutions\";
         private static readonly string ReportsDirectory = WorkingDirectory + @"\reports\";
@@ -37,10 +38,11 @@
                 {
                     // Prepare environment for running tests
                     var username = directory.GetUsername();
+                    var studentsNumber = directory.GetStudentsNumber();
                     var sourceFile = string.Format("{0}\\{1}.css", directory, TaskName);
                     if (!File.Exists(sourceFile))
                     {
-                        results.WriteLine("{0},{1}", username, 0);
+                        results.WriteLine("{0},{1},{2}", username, studentsNumber, 0);
                         Console.WriteLine("{0},{1}", username, 0);
                         continue;
                     }
@@ -73,17 +75,18 @@
                     File.Move(ImageFile, ReportsDirectory + string.Format("{0}-image.png", username));
 
                     // Move solution to reports folder
+                    File.Delete(ReportsDirectory + string.Format("{0}-style.css", username));
                     File.Copy(sourceFile, ReportsDirectory + string.Format("{0}-style.css", username));
 
                     // Extract final points
                     var points = int.Parse(output.GetStringBetween("Total points: ", "/"));
-                    if (points < 5)
+                    if (points < MinimumPointsRequired)
                     {
                         points = 0;
                     }
 
                     // Output results
-                    results.WriteLine("{0},{1}", username, points);
+                    results.WriteLine("{0},{1},{2}", username, studentsNumber, points);
                     Console.WriteLine("{0},{1}", username, points);
                 }
             }

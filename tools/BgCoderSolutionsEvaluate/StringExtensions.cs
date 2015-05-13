@@ -41,5 +41,16 @@
             var username = directoryName.Substring(0, indexOfBracket).Trim();
             return username;
         }
+
+        public static string GetStudentsNumber(this string path)
+        {
+            var directoryName = Path.GetFileName(path);
+            if (directoryName == null)
+            {
+                return null;
+            }
+
+            return path.GetStringBetween("] [", "]");
+        }
     }
 }

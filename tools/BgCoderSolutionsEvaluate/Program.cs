@@ -14,6 +14,7 @@
         private static readonly string ExecutablePath = WorkingDirectory + @"\phantomjs.exe";
         private static readonly string JudgeJsFile = WorkingDirectory + @"\judge.js";
         private static readonly string CssFile = WorkingDirectory + @"\style.css";
+        private static readonly string ImageFile = WorkingDirectory + @"\image.png";
         
         public static void Main()
         {
@@ -30,8 +31,8 @@
                 var directories = Directory.GetDirectories(SolutionsFolder);
                 foreach (var directory in directories)
                 {
+                    // Prepare environment for running tests
                     var username = directory.GetUsername();
-
                     var sourceFile = string.Format("{0}\\{1}.css", directory, TaskName);
                     if (!File.Exists(sourceFile))
                     {
@@ -41,8 +42,10 @@
                     }
 
                     File.Delete(CssFile);
+                    File.Delete(ImageFile);
                     File.Copy(sourceFile, CssFile);
 
+                    // Create phantomjs.exe process and run it
                     var process = new Process();
                     process.StartInfo = new ProcessStartInfo(ExecutablePath)
                                             {
@@ -50,19 +53,28 @@
                                                 RedirectStandardOutput = true,
                                                 Arguments = string.Format("\"{0}\"", JudgeJsFile),
                                                 WorkingDirectory = WorkingDirectory,
+                                                // CreateNoWindow = true,
                                             };
                     process.Start();
 
+                    // Wait the process to finish
                     var output = process.StandardOutput.ReadToEnd();
+
+                    // Write test reports to report file
                     var checkerOutputFile = ReportsDirectory + string.Format("{0}-checker-report.txt", username);
                     File.WriteAllText(checkerOutputFile, output);
 
+                    // Move image to reports folder
+                    File.Move(ImageFile, ReportsDirectory + string.Format("{0}-image.png", username));
+
+                    // Extract final points
                     var points = int.Parse(output.GetStringBetween("Total points: ", "/"));
                     if (points < 5)
                     {
                         points = 0;
                     }
 
+                    // Output results
                     results.WriteLine("{0},{1}", username, points);
                     Console.WriteLine("{0},{1}", username, points);
                 }

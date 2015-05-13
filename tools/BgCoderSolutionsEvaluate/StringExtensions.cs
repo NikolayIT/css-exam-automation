@@ -32,7 +32,12 @@
         public static string GetUsername(this string path)
         {
             var directoryName = Path.GetFileName(path);
-            var indexOfBracket = directoryName.IndexOf("(", StringComparison.Ordinal);
+            if (directoryName == null)
+            {
+                return null;
+            }
+
+            var indexOfBracket = directoryName.IndexOf("[", StringComparison.Ordinal);
             var username = directoryName.Substring(0, indexOfBracket).Trim();
             return username;
         }

@@ -3,16 +3,18 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Threading.Tasks;
 
     public static class Program
     {
-        private static readonly string TaskName = "Task 2";
+        private const string TaskName = "Task 2";
         private static readonly string WorkingDirectory = Environment.CurrentDirectory;
         private static readonly string SolutionsFolder = WorkingDirectory + @"\solutions\";
         private static readonly string ReportsDirectory = WorkingDirectory + @"\reports\";
         private static readonly string OutputFile = WorkingDirectory + @"\results.csv";
         private static readonly string ExecutablePath = WorkingDirectory + @"\phantomjs.exe";
         private static readonly string JudgeJsFile = WorkingDirectory + @"\judge.js";
+        private static readonly string TestsJsFile = WorkingDirectory + @"\tests.js";
         private static readonly string CssFile = WorkingDirectory + @"\style.css";
         private static readonly string ImageFile = WorkingDirectory + @"\image.png";
         
@@ -28,6 +30,8 @@
             stopwatch.Start();
             using (var results = new StreamWriter(OutputFile))
             {
+                results.AutoFlush = true;
+
                 var directories = Directory.GetDirectories(SolutionsFolder);
                 foreach (var directory in directories)
                 {
@@ -53,7 +57,7 @@
                                                 RedirectStandardOutput = true,
                                                 Arguments = string.Format("\"{0}\"", JudgeJsFile),
                                                 WorkingDirectory = WorkingDirectory,
-                                                // CreateNoWindow = true,
+                                                CreateNoWindow = true,
                                             };
                     process.Start();
 
@@ -61,11 +65,15 @@
                     var output = process.StandardOutput.ReadToEnd();
 
                     // Write test reports to report file
-                    var checkerOutputFile = ReportsDirectory + string.Format("{0}-checker-report.txt", username);
+                    var checkerOutputFile = ReportsDirectory + string.Format("{0}-report.txt", username);
                     File.WriteAllText(checkerOutputFile, output);
 
                     // Move image to reports folder
+                    File.Delete(ReportsDirectory + string.Format("{0}-image.png", username));
                     File.Move(ImageFile, ReportsDirectory + string.Format("{0}-image.png", username));
+
+                    // Move solution to reports folder
+                    File.Copy(sourceFile, ReportsDirectory + string.Format("{0}-style.css", username));
 
                     // Extract final points
                     var points = int.Parse(output.GetStringBetween("Total points: ", "/"));
@@ -102,6 +110,13 @@
             if (!File.Exists(JudgeJsFile))
             {
                 Console.WriteLine("judge.js file not found!");
+                Console.WriteLine("Searched in: \"{0}\"", JudgeJsFile);
+                return false;
+            }
+
+            if (!File.Exists(TestsJsFile))
+            {
+                Console.WriteLine("tests.js file not found!");
                 Console.WriteLine("Searched in: \"{0}\"", JudgeJsFile);
                 return false;
             }

@@ -19,9 +19,16 @@ function compare(functionName, expected, received, param) {
 		return equalDiff(expected, received, param);
 };
 
-page.viewportSize = {width: 960, height: 800};
-page.open('index.html', function() {
+page.viewportSize = {width: 1024, height: 768};
+page.open('index.html', function(status) {
+	if (status !== 'success') {
+        console.log(status);
+		return;
+    }
+	
 	if (runBeforeTests) page.evaluate(runBeforeTests);
+	
+	page.render('image.png', {format: 'png', quality: '100'});
 	
 	var points = 0;
 	var maxPoints = 0;

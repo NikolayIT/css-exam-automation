@@ -224,12 +224,12 @@ exports.tests = [
     {name:"#footerMenu first element left", points: 2, func:function(){
         return $("#footerMenu li").eq(0).offset().left
              + parseInt($("#footerMenu").eq(0).css("padding-left"));
-    }, expected: 532, compare: "equalDiff", compareParam: 10},
+    }, expected: 532, compare: "equalDiff", compareParam: 50},
     
     {name:"#footerMenu last element left", points: 1, func:function(){
         return $("#footerMenu li").eq(2).offset().left
              + parseInt($("#footerMenu").eq(0).css("padding-left"));
-    }, expected: 745, compare: "equalDiff", compareParam: 10},
+    }, expected: 745, compare: "equalDiff", compareParam: 50},
     
     
     // Others (max 6)

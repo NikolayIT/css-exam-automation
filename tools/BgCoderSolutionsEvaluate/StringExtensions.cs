@@ -1,6 +1,7 @@
 ﻿namespace BgCoderSolutionsEvaluate
 {
     using System;
+    using System.IO;
 
     public static class StringExtensions
     {
@@ -26,6 +27,14 @@
             }
 
             return input.Substring(startPosition, endPosition - startPosition);
+        }
+        
+        public static string GetUsername(this string path)
+        {
+            var directoryName = Path.GetFileName(path);
+            var indexOfBracket = directoryName.IndexOf("(", StringComparison.Ordinal);
+            var username = directoryName.Substring(0, indexOfBracket).Trim();
+            return username;
         }
     }
 }

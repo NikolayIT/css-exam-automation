@@ -4,7 +4,6 @@
     using System.Diagnostics;
     using System.IO;
 
-    // Forgive me for the code quality
     public static class Program
     {
         private static readonly string TaskName = "Task 2";
@@ -15,11 +14,15 @@
         private static readonly string ExecutablePath = WorkingDirectory + @"\phantomjs.exe";
         private static readonly string JudgeJsFile = WorkingDirectory + @"\judge.js";
         private static readonly string CssFile = WorkingDirectory + @"\style.css";
-
+        
         public static void Main()
         {
-            Directory.CreateDirectory(ReportsDirectory);
-            File.Delete(OutputFile);
+            if (!CheckPreconditions())
+            {
+                Console.WriteLine("Errors found! Exiting.");
+                return;
+            }
+
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             using (var results = new StreamWriter(OutputFile))
@@ -27,7 +30,7 @@
                 var directories = Directory.GetDirectories(SolutionsFolder);
                 foreach (var directory in directories)
                 {
-                    var username = GetUsername(directory);
+                    var username = directory.GetUsername();
 
                     var sourceFile = string.Format("{0}\\{1}.css", directory, TaskName);
                     if (!File.Exists(sourceFile))
@@ -68,12 +71,37 @@
             Console.WriteLine(stopwatch.Elapsed);
         }
 
-        private static string GetUsername(string path)
+        private static bool CheckPreconditions()
         {
-            var directoryName = Path.GetFileName(path);
-            var indexOfBracket = directoryName.IndexOf("(", StringComparison.Ordinal);
-            var username = directoryName.Substring(0, indexOfBracket).Trim();
-            return username;
+            if (!Directory.Exists(SolutionsFolder))
+            {
+                Console.WriteLine("Solutions directory not found!");
+                Console.WriteLine("Searched in: \"{0}\"", SolutionsFolder);
+                return false;
+            }
+
+            if (!File.Exists(ExecutablePath))
+            {
+                Console.WriteLine("phantomjs.exe not found!");
+                Console.WriteLine("Searched in: \"{0}\"", ExecutablePath);
+                return false;
+            }
+
+            if (!File.Exists(JudgeJsFile))
+            {
+                Console.WriteLine("judge.js file not found!");
+                Console.WriteLine("Searched in: \"{0}\"", JudgeJsFile);
+                return false;
+            }
+
+            Directory.CreateDirectory(ReportsDirectory);
+
+            if (File.Exists(OutputFile))
+            {
+                File.Delete(OutputFile);
+            }
+
+            return true;
         }
     }
 }

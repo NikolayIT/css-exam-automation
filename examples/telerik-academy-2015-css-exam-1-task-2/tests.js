@@ -234,7 +234,8 @@ exports.tests = [
     
     // Others (max 6)
     {name:"Logo has background image", points: 3, func:function(){
-        return $("#logo").css("background-image").indexOf("logo.png") > -1;
+        return $("#logo").css("background-image").indexOf("logo.png") > -1 ||
+               $("#logo").css("content").indexOf("logo.png") > -1;
     }, expected: true, compare: "equal", compareParam: null},
     
     {name:"Footer links has no list style", points: 3, func:function(){

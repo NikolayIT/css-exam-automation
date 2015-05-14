@@ -228,7 +228,7 @@ exports.tests = [
     
     {name:"#footerMenu last element left", points: 1, func:function(){
         return $("#footerMenu li").eq(2).offset().left
-             + parseInt($("#footerMenu li").eq(0).css("padding-left"));
+             + parseInt($("#footerMenu li").eq(2).css("padding-left"));
     }, expected: 745, compare: "equalDiff", compareParam: 50},
     
     

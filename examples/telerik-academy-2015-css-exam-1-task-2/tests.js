@@ -1,4 +1,4 @@
-    exports.runBeforeTests = function() {
+exports.runBeforeTests = function() {
     $("html").css("padding", "0");
     $("html").css("margin", "0 auto");
     $("html").css("width", "1000px");
@@ -183,12 +183,12 @@ exports.tests = [
     
     {name:"Header separator top", points: 1, func:function(){
         return $(".separator").eq(0).offset().top
-             + parseInt($("#logo").eq(0).css("padding-top"));
+             + parseInt($(".separator").eq(0).css("padding-top"));
     }, expected: 10, compare: "equalDiff", compareParam: 1},
     
     {name:"Header separator left", points: 1, func:function(){
         return $(".separator").eq(0).offset().left
-             + parseInt($("#logo").eq(0).css("padding-left"));
+             + parseInt($(".separator").eq(0).css("padding-left"));
     }, expected: 187, compare: "equalDiff", compareParam: 2},
     
     {name:"'Support' text starts after the image", points: 1, func:function(){
@@ -218,17 +218,17 @@ exports.tests = [
     
     {name:"#copyright left", points: 2, func:function(){
         return $("#copyright").eq(0).offset().left
-             + parseInt($("#language").eq(0).css("padding-left"));
+             + parseInt($("#copyright").eq(0).css("padding-left"));
     }, expected: 829, compare: "equalDiff", compareParam: 10},
     
     {name:"#footerMenu first element left", points: 2, func:function(){
         return $("#footerMenu li").eq(0).offset().left
-             + parseInt($("#footerMenu").eq(0).css("padding-left"));
+             + parseInt($("#footerMenu li").eq(0).css("padding-left"));
     }, expected: 532, compare: "equalDiff", compareParam: 50},
     
     {name:"#footerMenu last element left", points: 1, func:function(){
         return $("#footerMenu li").eq(2).offset().left
-             + parseInt($("#footerMenu").eq(0).css("padding-left"));
+             + parseInt($("#footerMenu li").eq(0).css("padding-left"));
     }, expected: 745, compare: "equalDiff", compareParam: 50},
     
     

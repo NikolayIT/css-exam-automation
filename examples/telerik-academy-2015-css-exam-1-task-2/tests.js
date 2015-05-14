@@ -146,7 +146,8 @@ exports.tests = [
 
     {name:"Footer height", points: 3, func:function(){
         return ($("#footer").outerHeight() >= 57 && $("#footer").outerHeight() <= 63) ||
-                (Math.abs($("body").outerHeight() - $("#footer").offset().top) >= 57 && Math.abs($("body").outerHeight() - $("#footer").offset().top) <= 63);
+                (Math.abs($("body").outerHeight() - $("#footer").offset().top) >= 57 &&
+                 Math.abs($("body").outerHeight() - $("#footer").offset().top) <= 63);
     }, expected: true, compare: "equal", compareParam: null},
     
     {name:"Whole page height", points: 3, func:function(){

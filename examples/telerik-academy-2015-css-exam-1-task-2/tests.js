@@ -156,7 +156,7 @@ exports.tests = [
     // Widths (max 10)
     {name:"#logo width", points: 2, func:function(){
         return $("#logo").outerWidth();
-    }, expected: 175, compare: "equalDiff", compareParam: 0},
+    }, expected: 175, compare: "equalDiff", compareParam: 5},
     
     {name:".separator width", points: 2, func:function(){
         return parseInt($(".separator").outerWidth());

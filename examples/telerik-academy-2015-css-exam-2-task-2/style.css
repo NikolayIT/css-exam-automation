@@ -1,0 +1,109 @@
+html, body {
+    font-family: 'Segoe UI', 'Segoe UI Web', 'Segoe UI Symbol', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0 auto;
+    width: 1000px;
+    font-weight: 400;
+    -webkit-text-stroke-width: 0;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+#header {
+    height: 35px;
+    background-color: #077CC6;
+}
+
+#logo {
+    height: 35px;
+    width: 195px;
+    float: left;
+    background-image: url('images/logo.png');
+}
+
+#menu {
+    float: right;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+#menu li {
+    float: left;
+    padding: 0;
+    margin: 0;
+    padding-right: 15px;
+    text-transform: capitalize;
+}
+
+#menu li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#search {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.searchText {
+    width: 200px;
+    height: 25px;
+}
+
+#main {
+    padding: 15px;
+    text-align: justify;
+    font-size: 16px;
+}
+
+#main h1 {
+    font-weight: normal;
+    font-size: 53px;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.mainImage {
+    float: right;
+    border: none;
+}
+
+.clear {
+    clear: both;
+}
+
+#main a {
+    color: #DC143C;
+    text-decoration: none;
+}
+
+#main code {
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+#footer {
+    height: 45px;
+    font-size: 11px;
+    text-align: center;
+    background-color: #077CC6;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+.copyright {
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+
+#footer a {
+    color: #e0e0e0;
+    text-decoration: none;
+}

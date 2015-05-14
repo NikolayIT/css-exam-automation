@@ -8,7 +8,7 @@ exports.runBeforeTests = function() {
 }
 
 exports.tests = [
-    // Font sizes (max 15)
+    // Font sizes (max 14)
     {name:"Font size of menu items", points: 4, func:function(){
         return $("#menu li a").eq(0).css("font-size");
     }, expected: "13px", compare: "equal", compareParam: null},
@@ -159,7 +159,7 @@ exports.tests = [
     }, expected: 970, compare: "equalDiff", compareParam: 5},
     
     
-    // Top positions (max 8)
+    // Top positions (max 12)
     {name:"Header menu top position", points: 2, func:function(){
         return $("#menu li a").eq(1).offset().top
              + parseInt($("#menu li a").eq(1).css("padding-top"));
@@ -192,7 +192,7 @@ exports.tests = [
     }, expected: 15, compare: "equalDiff", compareParam: 5},
     
     
-    // Left positions
+    // Left positions (max 13)
     {name:"Logo starts at the beginning of the line", points: 1, func:function(){
         return $("#logo").eq(0).offset().left
              + parseInt($("#logo").eq(0).css("padding-left"));

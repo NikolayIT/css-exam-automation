@@ -130,7 +130,7 @@ exports.tests = [
     
     {name:"#logo height", points: 1, func:function(){
         return $("#logo").outerHeight();
-    }, expected: 65, compare: "equalDiff", compareParam: 0},
+    }, expected: 65, compare: "equalDiff", compareParam: 2},
     
     {name:".separator height", points: 2, func:function(){
         return parseInt($(".separator").eq(0).css("height"));
@@ -156,7 +156,7 @@ exports.tests = [
     // Widths (max 10)
     {name:"#logo width", points: 2, func:function(){
         return $("#logo").outerWidth();
-    }, expected: 175, compare: "equalDiff", compareParam: 0},
+    }, expected: 175, compare: "equalDiff", compareParam: 5},
     
     {name:".separator width", points: 2, func:function(){
         return parseInt($(".separator").outerWidth());
@@ -171,7 +171,7 @@ exports.tests = [
     }, expected: 970, compare: "equalDiff", compareParam: 5},
     
     {name:"Main horizontal line width", points: 2, func:function(){
-        return parseInt($("#main hr").css("width"));
+        return parseInt($("#main hr")..outerWidth());
     }, expected: 968, compare: "equalDiff", compareParam: 5},
     
     

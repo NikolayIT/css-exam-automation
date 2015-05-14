@@ -133,8 +133,10 @@ exports.tests = [
     }, expected: 25, compare: "equalDiff", compareParam: 0},
     
     {name:"Main height", points: 2, func:function(){
-        return $("#main").outerHeight();
-    }, expected: 477, compare: "equalDiff", compareParam: 5},
+        return ($("#main").outerHeight() >= 472 && $("#main").outerHeight() <= 482) ||
+               (Math.abs($("#main").offset().top - $("#footer").offset().top) >= 472 &&
+                Math.abs($("#main").offset().top - $("#footer").offset().top) <= 482);
+    }, expected: true, compare: "equal", compareParam: null},
     
     {name:"Footer height", points: 2, func:function(){
         return $("#footer").outerHeight();

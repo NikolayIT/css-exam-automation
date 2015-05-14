@@ -236,6 +236,7 @@ exports.tests = [
     // Others (max 11)
     {name:"Logo has background image", points: 3, func:function(){
         return $("#logo").css("background-image").indexOf("logo.png") > -1 ||
+               $("#header").css("background-image").indexOf("logo.png") > -1 ||
                $("#logo").css("content").indexOf("logo.png") > -1;
     }, expected: true, compare: "equal", compareParam: null},
     

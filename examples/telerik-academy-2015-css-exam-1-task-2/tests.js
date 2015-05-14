@@ -117,12 +117,14 @@ exports.tests = [
     
     // Heights (max 20)
     {name:"Header height", points: 2, func:function(){
-        return $("#header").outerHeight();
-    }, expected: 130, compare: "equalDiff", compareParam: 5},
+        return ($("#header").outerHeight() >= 125 && $("#header").outerHeight() <= 135) ||
+                ($("#main").offset().top >= 125 && $("#main").offset().top <= 135)
+    }, expected: true, compare: "equal", compareParam: null},
     
     {name:"#shellHeader height", points: 2, func:function(){
-        return $("#shellHeader").outerHeight();
-    }, expected: 65, compare: "equalDiff", compareParam: 3},
+        return ($("#shellHeader").outerHeight() >= 62 && $("#shellHeader").outerHeight() <= 68) ||
+                ($("#search").offset().top >= 62 && $("#search").offset().top <= 68)
+    }, expected: true, compare: "equal", compareParam: null},
     
     {name:"#search height", points: 2, func:function(){
         return $("#search").outerHeight();
@@ -143,10 +145,12 @@ exports.tests = [
     {name:"Main horizontal line height", points: 2, func:function(){
         return $("#main hr").outerHeight();
     }, expected: 7, compare: "equalDiff", compareParam: 2},
-    
+
     {name:"Footer height", points: 3, func:function(){
-        return $("#footer").outerHeight();
-    }, expected: 60, compare: "equalDiff", compareParam: 3},
+        return ($("#footer").outerHeight() >= 57 && $("#footer").outerHeight() <= 63) ||
+                (Math.abs($("body").outerHeight() - $("#footer").offset().top) >= 57 &&
+                 Math.abs($("body").outerHeight() - $("#footer").offset().top) <= 63);
+    }, expected: true, compare: "equal", compareParam: null},
     
     {name:"Whole page height", points: 3, func:function(){
         return $("body").outerHeight();

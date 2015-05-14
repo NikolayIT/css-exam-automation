@@ -139,8 +139,10 @@ exports.tests = [
     }, expected: true, compare: "equal", compareParam: null},
     
     {name:"Footer height", points: 2, func:function(){
-        return $("#footer").outerHeight();
-    }, expected: 60, compare: "equalDiff", compareParam: 3},
+        return ($("#footer").outerHeight() >= 57 && $("#footer").outerHeight() <= 63) ||
+                (Math.abs($("body").outerHeight() - $("#footer").offset().top) >= 57 &&
+                 Math.abs($("body").outerHeight() - $("#footer").offset().top) <= 63);
+    }, expected: true, compare: "equal", compareParam: null},
     
     {name:"Whole page height", points: 2, func:function(){
         return $("body").outerHeight();

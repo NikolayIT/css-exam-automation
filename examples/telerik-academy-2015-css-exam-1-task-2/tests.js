@@ -118,14 +118,12 @@ exports.tests = [
     // Heights (max 20)
     {name:"Header height", points: 2, func:function(){
         return ($("#header").outerHeight() >= 125 && $("#header").outerHeight() <= 135) ||
-                ($("body").outerHeight() - $("#main").offset().top >= 125 &&
-                 $("body").outerHeight() - $("#main").offset().top <= 135)
+                ($("#main").offset().top >= 125 && $("#main").offset().top <= 135)
     }, expected: true, compare: "equal", compareParam: null},
     
     {name:"#shellHeader height", points: 2, func:function(){
         return ($("#shellHeader").outerHeight() >= 62 && $("#shellHeader").outerHeight() <= 68) ||
-                ($("body").outerHeight() - $("#search").offset().top >= 62 &&
-                 $("body").outerHeight() - $("#search").offset().top <= 68)
+                ($("#search").offset().top >= 62 && $("#search").offset().top <= 68)
     }, expected: true, compare: "equal", compareParam: null},
     
     {name:"#search height", points: 2, func:function(){

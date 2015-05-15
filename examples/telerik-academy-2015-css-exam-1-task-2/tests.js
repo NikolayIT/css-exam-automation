@@ -177,8 +177,11 @@ exports.tests = [
     }, expected: 970, compare: "equalDiff", compareParam: 5},
     
     {name:"Main horizontal line width", points: 2, func:function(){
-        return parseInt($("#main hr").css("width"));
-    }, expected: 968, compare: "equalDiff", compareParam: 5},
+        return (parseInt($("#main hr").css("width")) + parseInt($("#main hr").css("border-width")) * 2 >= 963 &&
+                parseInt($("#main hr").css("width")) + parseInt($("#main hr").css("border-width")) * 2 <= 973) ||
+               (parseInt($("#main hr").css("width")) >= 963 &&
+                parseInt($("#main hr").css("width")) <= 973);
+    }, expected: true, compare: "equal", compareParam: null},
     
     
     // Positions (max 16)

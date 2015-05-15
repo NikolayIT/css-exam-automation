@@ -177,7 +177,8 @@ exports.tests = [
     }, expected: 970, compare: "equalDiff", compareParam: 5},
     
     {name:"Main horizontal line width", points: 2, func:function(){
-        return parseInt($("#main hr").css("width"));
+        return parseInt($("#main hr").css("width"))
+         + parseInt($("#main hr").css("border-width")) * 2;;
     }, expected: 968, compare: "equalDiff", compareParam: 5},
     
     

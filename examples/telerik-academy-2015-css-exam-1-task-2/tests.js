@@ -133,8 +133,8 @@ exports.tests = [
     }, expected: true, compare: "equal", compareParam: null},
     
     {name:"#logo height", points: 1, func:function(){
-        return $("#logo").outerHeight();
-    }, expected: 65, compare: "equalDiff", compareParam: 0},
+        return $("#logo").outerHeight() == 65 || $("#logo").outerHeight(true) == 65;
+    }, expected: true, compare: "equal", compareParam: null},
     
     {name:".separator height", points: 2, func:function(){
         return parseInt($(".separator").eq(0).css("height"));

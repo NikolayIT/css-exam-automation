@@ -1,72 +1,52 @@
-body, div, ul, li, input, label, img p{
-    padding:0;
-    margin:0;
+#root {
+  width: 960px;
+  font-size: 14px;
+  font-family: "Arial";
+  color: #e4eff9;
 }
-
-body, html{
-    font-size: 14px;
-    font-family: "Arial";
-
+.avengers {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background: #205d99;
+  width: 500px;
 }
-
-#root .avengers li .preview{
-    display: none;
+.avengers input {
+  display: none;
 }
-
-#root .avengers{
-    list-style: none;
+.avengers label {
+  display: block;
+  padding: 15px 15px;
+  text-align: center;
+  font-size: 1.5em;
 }
-
-#root .avengers li{
-    background-color: #205D99;
-    width: 500px;
-    border-bottom: 3px solid #79AEE3;
-    text-align:center;
-    padding: 10px 10px 5px 10px;
-
+.avengers label:hover {
+  cursor: pointer;
 }
-
-#root .avengers li{
-    padding: 20px 0px;
+.avengers input:checked +label {
+  color: #aecfee;
+  font-weight: bold;
+  font-size: 1.7em;
 }
-#root .avengers li input[type=radio]{
-    display:none;
+.avengers input:checked +label +.preview {
+  display: block;
 }
-#root .avengers li input[type=radio]:checked + label{
-    color: #AECFEE;
-    text-align:center;
+.avengers li {
+  border-bottom: 3px solid #79aee3;
 }
-
-#root .avengers li input[type=radio]:checked ~ div{
-    display: block;
-    padding: 0px 15px;
-    margin-top:33px;
+.preview {
+  display: none;
+  padding: 15px;
 }
-
-
-
-#root .avengers li label{
-    color:#E4EFF9;
-    font-size:25px;
-    font-weight: bold;
-    margin: 10px;
-
+.preview img {
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border: 15px solid #79aee3;
+  border-radius: 15px;
 }
-
-#root .avengers li .preview img{
-    float:left;
-    width:200px;
-    height:112px;
-    border: 15px solid #79AEE3;
-    border-radius: 15px;
-    margin-right: 10px;
-
+.preview p {
+  margin: 0;
+  text-align: justify;
 }
-
-#root .avengers li .preview p{
-    text-align:justify;
-    color: #E4EFF9;
-    margin-top:0;
-
-}
-

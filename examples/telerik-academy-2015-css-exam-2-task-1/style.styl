@@ -1,0 +1,54 @@
+bgColor= lighten(#123456, 20%)
+#root
+  width 960px
+  font-size 14px
+  font-family "Arial"
+  color lighten(bgColor, 90%)
+
+.avengers
+  margin 0
+  padding 0
+  list-style-type none
+  background bgColor
+  width 500px
+  
+  input
+    display none
+  label
+    display block
+    padding 15px 15px
+    text-align: center
+    font-size 1.5 em
+    &:hover
+      cursor pointer
+  
+  input:checked
+      +label
+        color lighten(bgColor, 70%)
+        font-weight bold
+        font-size 1.7em
+        +.preview
+          display block
+    
+  
+  li
+    border-bottom 3px solid lighten(bgColor, 50%)
+    
+.preview
+  display none
+  padding 15px
+  img
+    // display block
+    width 200px
+    float left
+    margin-right 10px
+    margin-bottom 5px
+    border 15px solid lighten(bgColor, 50%)
+    border-radius 15px
+      
+  p
+    margin 0
+    text-align: justify
+    
+  
+    

@@ -1,0 +1,87 @@
+html,
+body,
+div,
+h1,
+ul,
+li,
+p,
+a,
+img,
+span {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    font-size: 16px;
+}
+
+    body #wrapper {
+        width: 960px;
+    }
+
+.menu {
+    list-style-type: none;
+    margin-top: 5px;
+}
+
+    .menu li {
+        margin-left: 5px;
+        width: 180px;
+        height: 180px;
+        float: left;
+        text-align: center;
+        border: 20px solid grey;
+        background: #727272; /* Old browsers */
+        background: -moz-linear-gradient(top, #727272 0%, #ffffff 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#727272), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #727272 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #727272 0%,#ffffff 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #727272 0%,#ffffff 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #727272 0%,#ffffff 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#727272', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    }
+
+        .menu li:hover {
+            border: 20px solid #454545;
+            background: grey;
+        }
+
+            .menu li:hover h3 {
+                text-decoration: underline;
+            }
+
+            .menu li:hover .subtitle {
+                display: none;
+            }
+
+            .menu li:hover .click-here {
+                display: block;
+            }
+
+        .menu li h3 {
+            color: white;
+            margin: 5px auto;
+        }
+
+        .menu li .subtitle {
+            margin-top: 10px;
+        }
+
+        .menu li .click-here {
+            display: none;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .menu li .image-container img {
+            width: 120px;
+            height: 100px;
+            border-radius: 20px;
+        }
+
+        .menu li:hover .image-container img {
+            width: 140px;
+            height: 110px;
+        }

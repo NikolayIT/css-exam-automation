@@ -1,0 +1,60 @@
+previewBgColor= #ccc
+.clear-fix
+  zoom 1
+  &:after
+    content ''
+    display block
+    clear both
+    height 0
+#root
+  width 960px
+  font-size: 16px
+  font-family "Times New Roman"
+  color black
+.avengers
+  list-style-type none
+  
+.avenger
+  float left
+  padding 10px 15px
+  border-left 3px solid black
+  border-top 3px solid black
+  border-bottom 3px solid black
+  border-top-left-radius 15px
+  &:last-of-type
+    border-right 3px solid black
+  &:hover
+    border-bottom none
+    background previewBgColor
+    text-decoration underline
+    .preview
+      display block  
+  .name
+    font-weight bold
+.preview
+  display none
+  position absolute
+  left 50px
+  top 60px
+  width 595px
+  border 3px solid black
+  border-top none
+  padding 15px
+  background previewBgColor
+  img
+    float left
+    width 400px
+    border-radius 5px
+    border 5px solid #fff
+  .skills
+    margin 0
+    padding 0
+    list-style-type none
+    text-align: center
+    li
+      font-size 1.3em
+      margin-top 40px
+      &:first-letter
+        text-transform uppercase
+      &:hover
+        text-decoration underline

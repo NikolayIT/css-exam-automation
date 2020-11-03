@@ -21,7 +21,7 @@ exports.tests = [{
     name: "Default font-family of the text",
     points: 2,
     func: function() {
-      return $("#root").css("font-family").toLowerCase();
+      return $("#root").css("font-family").split(/,/)[0].toLowerCase();
     },
     expected: "'times new roman'",
     compare: "equal",
